@@ -1,6 +1,43 @@
 # Anyplay
 Playback media anywhere
 
+For a long I am pretty annoyed that playing back media on different devices
+is usually a total pain. I have quite a bunch off different devices in my
+house and in my office, most of them are either capable of media playback or
+contain some media I would like to play back. But not ncessarily all of it
+at the same time! There is some media on my laptop but the speakers are,
+well, laptop speakers. But there is my desktop workstation which is
+connected to a larger set of nice speakers. So I would have to copy the data
+over to the desktop and start a media player there. But if I am working on
+my laptop (for some reason) this means I have to from time to time switch my
+attention over to the desktop, control the playback from there and then
+return to my laptop. Not very convenient.
+
+Worse is playback of larger video files. I would first have to transfer it
+to some common storage that also the video player can access, then search it
+on the video player and finally start playback. If we are talking about a 1.5h
+fullHD recording this can take a while.
+
+All that does not make much sense. All of these devices are usually
+connected to my local network, all can easily stream (sending and receiving)
+data over that network, some have the data to send, some have appropriate
+capabilities for playback. So why not send the data for playback to a
+receiver and just have - played back?
+
+After months of pondering and research I found that there is indeed no
+simple solution to the problem - and I tried quite a bit. The closest I
+found was DLNA/UPNP but this has become pretty uncommon by now. The
+implementations and even commercial devices I found do not really work that
+well - discovery often does not work reliably (but is the only way),
+playback often hangs or stutters, and the specification is parts proprietary
+and *complicated*. Why make it so complicated for such a simple task? The
+closest thing I found so far is Chromecast but also this is pretty
+complicated and also pretty proprietary.
+
+So I came up with my own which should hopefully be 'good enough' and should
+be possible to implement on pretty my any device that can drive a network
+interface: Anyplay.
+
 ## Idea
 The basic idea is actually pretty simple. These days almost any device can
 hook up to an IP network and either access or serve http. Some devices can

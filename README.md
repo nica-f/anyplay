@@ -41,18 +41,18 @@ of the service.
 ## Example
 ### Playback of local music file
 A user wants to play back a local music file "music.mp3" on a remote Anyplay
-receiver device with <remote-ip> (remote is probably connected to a decent
+receiver device with `<remote-ip>` (remote is probably connected to a decent
 HiFi system):
-
+```
  # anyplay music.mp3 <remote-ip>
-
+```
 The local Anyplay application will then do two things:
 1. spawn a local http server serving the file "music.mp3" on a random
 unpriviliged IP port (>49150)
-2. it will open an http connection to <remote-ip> on port 4424 and send a
+2. it will open an http connection to `<remote-ip>` on port 4424 and send a
 JSON encapsulated media source block containing the URL to the locally
 spawned http server serving the file, e.g.:
-  http://<local-ip>/music.mp3
+  `http://<local-ip>/music.mp3`
 
 ```
 {

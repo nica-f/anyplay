@@ -1,0 +1,3 @@
+[submodule "linux-c/EmbeddableWebServer"]
+	path = linux-c/EmbeddableWebServer
+	url = https://github.com/nica-f/EmbeddableWebServer.git

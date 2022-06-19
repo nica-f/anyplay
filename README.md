@@ -76,6 +76,13 @@ of the service.
 
 
 ## Example
+### Start the receiver
+The Anyplay receiver will listen on port 4424 for incoming conection and
+then serve the requests:
+```
+ # anyplay -l
+```
+
 ### Playback of local music file
 A user wants to play back a local music file "music.mp3" on a remote Anyplay
 receiver device with `<remote-ip>` (remote is probably connected to a decent
@@ -93,10 +100,12 @@ spawned http server serving the file, e.g.:
 
 ```
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
-  "command": "source"
-  "param": "http://<local-ip>/music.mp3",
+  "command": "source",
+  "param": "http://<local-ip>/music.mp3"
 }
 ```
 
@@ -109,80 +118,96 @@ Pause playback:
 ```
  # anyplay -c pause <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "pause"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c play <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "play"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c stop <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "stop"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c vol+ <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "vol+"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c vol- <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "vol-"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c vol -p <val> <remote-ip>
 {
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "vol-"
-  "param": "<val>",
+  "param": "<val>"
 }
 ```
 
 ```
  # anyplay -c next <remote-ip>
 {
+  "jsonrpc":"2.0",
+  "id":"id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "next"
-  "param": "",
+  "param": ""
 }
 ```
 
 ```
  # anyplay -c prev <remote-ip>
 {
+  "jsonrpc":"2.0",
+  "id":"id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "prev"
-  "param": "",
+  "param": ""
 }
 ```
  ...
@@ -190,9 +215,11 @@ Pause playback:
 
 
 
-References:
+### References
+
 [] assigned numbers, for IP port assignent:
 https://www.iana.org/form/ports-services
+
 [] intended user port:
 4424
 

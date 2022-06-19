@@ -1,0 +1,1 @@
+{ "jsonrpc": "2.0", "id": "id", "service": "Anyplay", "version": "1.0", "command": "source", "param": "http://liveradio.swr.de/sw282p3/swr3/play.mp3" }

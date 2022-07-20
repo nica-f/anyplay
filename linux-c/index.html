@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>Anyplay</title>
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  background: #5D4157;
+  background: -webkit-linear-gradient(to bottom, #5D4157, #A8CABA);
+  background: linear-gradient(to bottom, #274046, #A8CABA);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.box {
+  display: flex;
+  width: 100%;
+  height: 8px;
+  margin: 5px 0px 60px 0px;
+}
+
+.box-sm {
+  height: 8px;
+  margin: 0;
+  flex-grow: 1;
+  transition: all .8s ease-in-out;
+  cursor: pointer;
+}
+
+.box-sm:hover {
+  flex-grow: 12;
+}
+
+.container,
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  background: #424242;
+  height: 100%;
+  margin: 20px;
+  padding: 20px;
+  outline: 1px dashed #98abb9;
+  outline-offset: -5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 2px 2px rgba(0, 0, 0, .2), 0 4px 4px rgba(0, 0, 0, .1), 0 0 8px rgba(0, 0, 0, .1);
+}
+
+.post {
+  margin-bottom: 50px;
+  h2,
+  p {
+    margin-bottom: 0px;
+  }
+  h2 {
+    font-size: 60px;
+    color: #E0E0E0;
+    text-shadow: 0px 1px 1px black;
+  }
+}
+
+.red {
+  background-color: #FF5852;
+}
+
+.orange {
+  background-color: #FF9000;
+}
+
+.yellow {
+  background-color: #FFD300;
+}
+
+.green {
+  background-color: #3DCD49;
+}
+
+.blue {
+  background-color: #0089D7;
+}
+
+.purple {
+  background-color: #9E44C4;
+}
+
+.mbutton {
+  font-size: x-large;
+  background-color: #5D4157;
+}
+</style>
+</head>
+<body>
+
+<script>
+window.addEventListener('load', function () {
+  console.log('This function is executed once the page is fully loaded');
+});
+
+function jsonReq(cmd, arg) {
+  const xmlhttp = new XMLHttpRequest();
+  const req = '{"jsonrpc": "2.0", "id": "id", "service": "Anyplay", "version": "1.0", "command": "' + cmd + '", "param": "' + arg + '" }';
+
+  console.log('jsonReq('+cmd+','+arg+')');
+
+  xmlhttp.open("POST", "/cmd");
+  xmlhttp.setRequestHeader("Content-Type", "application/json");
+  xmlhttp.send(req); 
+  xmlhttp.onload = () => console.log(xmlhttp.response);
+  xmlhttp.onprogress = function(event) {
+    if (event.lengthComputable) {
+      console.log(`Received ${event.loaded} of ${event.total} bytes`);
+    } else {
+      console.log(`Received ${event.loaded} bytes`); // no Content-Length
+    }
+  };
+  xmlhttp.onerror = function() {
+    alert("Request failed");
+  };
+}
+
+function buttonClick(arg) {
+  let inputVal = document.getElementById("URL").value;
+
+  console.log('button clicked: %s', arg);
+  if (arg == 'source') {
+    console.log('  source: %s', inputVal);
+    jsonReq('source', inputVal);
+  };
+  if (arg == 'play') {
+    jsonReq('play', '');
+  };
+  if (arg == 'stop') {
+    jsonReq('stop', '');
+  };
+};
+</script>
+
+<div class="container">
+  <div class="post">
+    <h2>Anyplay Receiver</h2>
+<p>
+Current source URL: <br/><input style="color:black;" type="text" id="cURL" disabled/><br/>
+Next source URL:<br/><input style="color:black;" type="text" id="URL"/>
+<button style="color:black;" onclick="buttonClick('source')">Set</button>
+</p>
+
+<p>
+<button class="mbutton" onclick="buttonClick('prev')">⏮</button>
+<button class="mbutton" onclick="buttonClick('stop')">⏹</button>
+<button class="mbutton" onclick="buttonClick('pause')">⏸</button>
+<button class="mbutton" onclick="buttonClick('play')">▶</button>
+<button class="mbutton" onclick="buttonClick('next')">⏭</button>
+</p>
+<p>
+<button class="mbutton" onclick="buttonClick('vol-')">🔈</button>
+<button class="mbutton" onclick="buttonClick('mute')">🔇</button>
+<button class="mbutton" onclick="buttonClick('vol+')">🔊</button>
+</p>
+
+<div class="box">
+  <div class="box-sm red"></div>
+  <div class="box-sm orange"></div>
+  <div class="box-sm yellow "></div>
+  <div class="box-sm green "></div>
+  <div class="box-sm blue "></div>
+  <div class="box-sm purple"></div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

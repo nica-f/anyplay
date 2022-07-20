@@ -1,0 +1,60 @@
+"GET / HTTP/1.1
+Host: localhost:8001
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: cross-site
+Pragma: no-cache
+Cache-Control: no-cache
+
+"
+
+
+206 HTTP status code
+
+server resonse,
+no file rage:
+"
+Accept-Ranges: none
+"
+
+"
+Accept-Ranges: bytes
+"
+
+in GET request header:
+"
+...
+Host: ...
+Range: bytes=0-1024
+"
+
+
+
+MPV:
+"
+GET /media HTTP/1.1
+User-Agent: libmpv
+Accept: */*
+Range: bytes=0-
+Connection: close
+Host: 192.168.178.94:46009
+Icy-MetaData: 1
+
+"
+
+mpg123:
+"
+GET /media HTTP/1.0
+User-Agent: mpg123/1.26.4
+Host: 192.168.178.94:40941
+Accept: audio/mpeg, audio/x-mpeg, audio/mp3, audio/x-mp3, audio/mpeg3, audio/x-mpeg3, audio/mpg, audio/x-mpg, audio/x-mpegaudio, application/octet-stream, audio/mpegurl, audio/mpeg-url, audio/x-mpegurl, audio/x-scpls, audio/scpls, application/pls, application/x-scpls, application/pls+xml, */*
+Icy-MetaData: 1
+
+"

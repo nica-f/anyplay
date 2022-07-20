@@ -36,6 +36,7 @@
 #include <sys/stat.h>
 #include <arpa/inet.h>
 
+#include "anyplay.h"
 #include "webserv.h"
 
 

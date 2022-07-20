@@ -42,6 +42,7 @@
 
 #include <cJSON.h>
 
+#include "anyplay.h"
 #include "webserv.h"
 
 #define BACKLOG 10  // Passed to listen()

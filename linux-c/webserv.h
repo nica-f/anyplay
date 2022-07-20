@@ -2,15 +2,9 @@
 #ifndef _WEBSERV_H
 #define _WEBSERV_H
 
-#define ANYPLAY_RECEIVER_PORT 4424
-
 #define HomePage "<html><header><title>Anyplay</title></header><body bgcolor=\"#def28d\"><center><h3>Anyplay</h3></center></body></html>"
 
 #define HTTP_404 "HTTP/1.1 404 Not Found\r\nServer: Anyplay\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nNot Found\n"
-
-#define ANYPLAY_JSON_OK "{ \"jsonrpc\": \"2.0\", \"id\": \"id\", \"service\": \"Anyplay\", \"version\": \"1.0\", \"result\": \"OK\" }"
-
-#define ANYPLAY_JSON_FAIL "{ \"jsonrpc\": \"2.0\", \"id\": \"id\", \"service\": \"Anyplay\", \"version\": \"1.0\", \"result\": \"FAIL\" }"
 
 #define HTTP_OK			"200 OK\r\n"
 #define HTTP_FORBIDEN	"403 Forbidden\r\n"

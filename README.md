@@ -1,5 +1,5 @@
 # Anyplay
-Playback media anywhere
+Playback any media anywhere
 
 For a long I am pretty annoyed that playing back media on different devices
 is usually a total pain. I have quite a bunch off different devices in my
@@ -127,6 +127,7 @@ Pause playback:
 }
 ```
 
+Start playback:
 ```
  # anyplay -c play <remote-ip>
 {
@@ -139,6 +140,7 @@ Pause playback:
 }
 ```
 
+Stop playback:
 ```
  # anyplay -c stop <remote-ip>
 {
@@ -151,6 +153,7 @@ Pause playback:
 }
 ```
 
+Inrease audio playback volume:
 ```
  # anyplay -c vol+ <remote-ip>
 {
@@ -163,6 +166,7 @@ Pause playback:
 }
 ```
 
+Decrease audio playback volume:
 ```
  # anyplay -c vol- <remote-ip>
 {
@@ -175,6 +179,7 @@ Pause playback:
 }
 ```
 
+Set audio playback volume to a certain level:
 ```
  # anyplay -c vol -p <val> <remote-ip>
 {
@@ -187,11 +192,12 @@ Pause playback:
 }
 ```
 
+If avaiable, play next source:
 ```
  # anyplay -c next <remote-ip>
 {
-  "jsonrpc":"2.0",
-  "id":"id",
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "next"
@@ -199,23 +205,55 @@ Pause playback:
 }
 ```
 
+If avaiable, play previous source:
 ```
  # anyplay -c prev <remote-ip>
 {
-  "jsonrpc":"2.0",
-  "id":"id",
+  "jsonrpc": "2.0",
+  "id": "id",
   "service": "Anyplay",
   "version": "1.0",
   "command": "prev"
   "param": ""
 }
 ```
+
  ...
 
+JSON responses can be, for successful command:
+
+```
+{
+  "jsonrpc": "2.0",
+  "id": "id",
+  "service": "Anyplay",
+  "version": "1.0",
+  "result": "OK"
+}
+```
+
+or for an unsuccessful / failed command:
+
+```
+{
+  "jsonrpc": "2.0",
+  "id": "id",
+  "service": "Anyplay",
+  "version": "1.0",
+  "result": "FAIL"
+}
+```
 
 
+### Testing
+
+`curl -X POST -H "Content-Type: application/json" -d "{\"protocol\": \"1.0\"}" http://192.168.178.76:4424`
+
+`curl -X POST -H "Content-Type: application/json" -d @play.json http://192.168.178.94:49485`
 
 ### References
+
+[] mDNS host and service discovery
 
 [] assigned numbers, for IP port assignent:
 https://www.iana.org/form/ports-services

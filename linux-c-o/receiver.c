@@ -43,6 +43,7 @@ static int anyplay_exec_command(const char *command, const char *param)
 			return -1;
 		} else {
 			fprintf(stderr, "- start playing '%s'\n", source_url);
+#if 0
 			player_pid=fork();
 			if (player_pid == 0) {
 				execlp("mpv", "mpv", "--quiet", source_url, NULL);
@@ -51,6 +52,7 @@ static int anyplay_exec_command(const char *command, const char *param)
 				fprintf(stderr, "player_pid=%d\n", player_pid);
 				playing=1;
 			}
+#endif
 		}
 	}
 	if (strcmp(command, "stop") == 0) {
@@ -124,6 +126,7 @@ int receiver_parse_json_cmd(const char *json_cmd)
 int anyplay_receiver_start (int port)
 {
   signal(SIGCHLD, player_child_sig);
+  signal(SIGPIPE, player_child_sig);
 
   serverInit(&ews);
 

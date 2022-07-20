@@ -74,7 +74,6 @@ int post_req(const char *host, char *req)
 {
     /* first where are we going to send it? */
     int portno = ANYPLAY_RECEIVER_PORT;
-    //char *host = strlen(argv[1])>0?argv[1]:"localhost";
 
     struct hostent *server;
     struct sockaddr_in serv_addr;
@@ -97,7 +96,8 @@ int post_req(const char *host, char *req)
 
     /* create the socket */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) error("ERROR opening socket");
+    if (sockfd < 0)
+        error("ERROR opening socket");
 
     /* lookup the ip address */
     server = gethostbyname(host);
@@ -127,12 +127,13 @@ int post_req(const char *host, char *req)
     } while (sent < total);
 
     /* receive the response */
-    memset(response,0,sizeof(response));
+    memset(response, 0, sizeof(response));
     total = sizeof(response)-1;
     received = 0;
     do {
         //bytes = read(sockfd, response+received, total-received);
         bytes = recv(sockfd, response, 4095, 0);
+        fprintf(stderr, "resp-recv %d\n", bytes);
         if (bytes < 0)
             error("ERROR reading response from socket");
         if (bytes == 0)
@@ -215,7 +216,7 @@ int anyplay_sender_serve_file(char *fname, const char *receiver_ip)
 
     getchar();
 
-    serverStop(&ews);
+    //serverStop(&ews);
 
     return 0;
 }
